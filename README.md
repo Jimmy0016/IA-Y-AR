@@ -1,59 +1,91 @@
-# Educativa
+# Lengua y Literatura — Corrector Ortográfico con IA + AR
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.5.
+Página educativa interactiva que corrige ortografía en español usando **IA local con Ollama** (sin internet, sin API key) y muestra un **trofeo 3D en Realidad Aumentada** cuando el texto está perfecto.
 
-## Development server
+---
 
-To start a local development server, run:
+## Características
 
+- **IA local** — Usa Llama 3.1 (8B) corriendo en tu PC, sin enviar datos a ningún servidor
+- **100% privado** — No necesita internet ni API key
+- **Trofeo AR 3D** — Se desbloquea cuando el texto no tiene errores ortográficos
+- **Explicaciones** — La IA explica por qué cada palabra está mal escrita
+- **Reglas ortográficas** — Panel educativo con reglas del español
+
+---
+
+## Requisitos previos
+
+### 1. Instalar Node.js
+Descarga e instala desde [nodejs.org](https://nodejs.org) (versión 18 o superior)
+
+### 2. Instalar Ollama
+Descarga e instala desde [ollama.com/download](https://ollama.com/download)
+
+### 3. Descargar el modelo de IA
+Abre una terminal y ejecuta:
 ```bash
-ng serve
+ollama pull llama3.1:8b
+```
+> El modelo pesa ~4.7GB, espera a que termine la descarga
+
+---
+
+## Cómo ejecutar
+
+### Paso 1 — Iniciar Ollama
+Abre una terminal y ejecuta:
+```bash
+ollama serve
+```
+> Déjala abierta en segundo plano
+
+### Paso 2 — Instalar dependencias del proyecto
+```bash
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Paso 3 — Iniciar la aplicación
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Paso 4 — Abrir en el navegador
+Ve a [http://localhost:4200](http://localhost:4200)
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Cómo usar la app
 
-To build the project run:
+1. Escribe un texto en español en el editor
+2. Presiona el botón "Verificar ortografía"
+3. La IA analiza el texto:
+   - Si hay errores, muestra cada error con su corrección y explicación
+   - Si está perfecto, aparece el trofeo 3D con confeti
+4. Corrige los errores en el texto y vuelve a verificar
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Tecnologías
 
-## Running unit tests
+| Tecnología | Uso |
+|---|---|
+| Angular 22 | Framework frontend |
+| Ollama + Llama 3.1 8B | IA local para corrección ortográfica |
+| Three.js | Trofeo 3D en Realidad Aumentada |
+| TypeScript | Lenguaje principal |
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## Solución de problemas
 
-## Running end-to-end tests
+**Error: "No se pudo conectar con Ollama"**
+- Asegúrate de que Ollama esté corriendo (`ollama serve`)
+- Verifica que el modelo esté descargado (`ollama list`)
 
-For end-to-end (e2e) testing, run:
+**El trofeo AR no aparece**
+- Asegúrate de que tu navegador soporte WebGL (Chrome o Edge recomendados)
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**La IA tarda mucho**
+- Es normal la primera vez que se carga el modelo (~30 segundos)
+- Las siguientes consultas son más rápidas
